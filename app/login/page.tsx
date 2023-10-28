@@ -1,12 +1,9 @@
+import HomeHeader from "@/components/HomeHeader";
 import style from "@/styles/login/index.module.scss";
 
 export default function LoginPage() {
   return (
     <main>
-      <div className={style.warp}>
-        <a className={style.logo} href="/">
-          그날의 하늘
-        </a>
         <div className={style.login_warp}>
           <form name="login_form" id="login_form" className={style.login_form} method="POST">
             <div className={style.panel_inner}>
@@ -53,7 +50,7 @@ export default function LoginPage() {
             <input type="hidden" id="profile_userid" name="userid" />
           </form>
         </div>
-      </div>
+      <HomeHeader />
     </main>
   );
 }
