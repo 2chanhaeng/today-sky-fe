@@ -1,0 +1,58 @@
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 160, 187, 237;
+  --background-start-rgb: --background-rgb;
+  --background-end-rgb: 255, 255, 255;
+  --primary-rgb: rgb(0, 89, 255);
+  word-break: keep-all;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --backgroud-rgb: 23, 39, 70;
+    --background-start-rgb: --background-rgb;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  width: 100vw;
+  /* 최적의 최소/최대 넓이값이 얼마일지 생각해보기 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+main {
+  min-width: 350px;
+  max-width: 620px;
+  /* to center content */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+
+:any-link {
+  text-decoration: none;
+}
+
+input[type="checkbox"] {
+  /* round checkbox */
+  appearance: none;
+  border-radius: 50%;
+  width: 1.2rem;
+  aspect-ratio: 1 / 1;
+
+  background-color: $fg-color;
+  border: 2px solid #777;
+  margin: 0;
+  margin-right: 0.5rem;
+  &:checked {
+    background-color: $pri-color;
+  }
+}
