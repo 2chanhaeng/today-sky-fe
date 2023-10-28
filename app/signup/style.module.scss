@@ -1,0 +1,20 @@
+.header {
+  margin-bottom: 1rem;
+  .h1 {
+    font-size: 5rem;
+  }
+}
+
+.content {
+  width: 100%;
+  section {
+    width: 100%;
+  }
+  .form {
+    // to center content
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
