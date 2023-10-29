@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+  background-color: $fg-color;
+  border-radius: 0 0 1rem 1rem;
+  margin-bottom: 0.5rem;
+  .link {
+    color: black;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    &.now {
+      background-color: $bg-color;
+      color: $fg-color;
+      font-weight: bold;
+    }
+  }
+}
