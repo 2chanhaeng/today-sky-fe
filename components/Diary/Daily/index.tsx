@@ -1,26 +1,28 @@
 import { Dates } from "@/types/params";
 import { Diary } from "@/types/response";
-import getAccess from "@/utils/getAccess";
-import reqData from "@/utils/reqData";
 import Editor from "./Editor";
 import style from "./style.module.scss";
 import TurnEditor from "./TurnEditor";
+import getPathByDate from "@/utils/getPathByDate";
 
-export default async function DailyDiary({ year, month, date }: Dates) {
-  const diary = await getDiary({ year, month, date });
+const getPath = getPathByDate("diary");
+
+export default async function DailyDiary(params: Dates) {
+  const path = getPath({ params });
+  const diary = await getDiary(path);
   return (
     <section className={style.diary}>
       <TurnEditor />
       <article className={style.content}>{diary.content}</article>
-      <Editor prev={diary.content} datePath={`/${year}/${month}/${date}`} />
+      <Editor prev={diary.content} path={path} />
       <label htmlFor="edit" className={style.edit}></label>
     </section>
   );
 }
 
-async function getDiary({ year, month, date }: Dates) {
-  const path = `/diary/${year}/${month}/${date}`;
-  const diary = await reqData<null, Diary>(path)(await getAccess())("GET")();
-  if (!diary) return { date, content: "" };
+async function getDiary(path: string): Promise<Diary> {
+  const res = await fetch(`/api${path}`);
+  const diary = await res.json();
+  if (!diary) return { content: "" };
   return diary;
 }
