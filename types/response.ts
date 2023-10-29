@@ -10,6 +10,10 @@ export interface Diaries {
   [key: number]: Diary;
 }
 
+export interface PostTodo {
+  id: string;
+}
+
 export interface Todo {
   id: string;
   content: string;
