@@ -1,0 +1,24 @@
+.content {
+  // separate regularly
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0.5rem;
+  align-items: stretch;
+  justify-items: stretch;
+  width: 100%;
+
+  margin-bottom: 1rem;
+  :where(.daily, .monthly):where(.diary, .todo) {
+    @extend .button;
+    aspect-ratio: 1/1; // separate regularly
+  }
+}
+.footer {
+  width: 100%;
+  display: flex;
+  .toLogout {
+    @extend .button;
+    background-color: $fg-color;
+    color: $err-color;
+  }
+}
