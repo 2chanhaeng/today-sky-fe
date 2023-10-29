@@ -6,7 +6,3 @@ export interface PostDiary {
   content: string;
   emotion_id?: string;
 }
-export interface PostDiary {
-  content: string;
-  emotion_id?: string;
-}
