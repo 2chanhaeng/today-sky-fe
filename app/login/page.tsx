@@ -1,6 +1,6 @@
 import HomeHeader from "@/components/HomeHeader";
 import LoginForm from "@/components/LoginForm";
-import style from "@/styles/login/index.module.scss";
+import style from "/style.module.scss";
 
 export default function LoginPage() {
   return (
