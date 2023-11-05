@@ -30,9 +30,11 @@ function Header({ app, year, month }: AppYearMonth) {
       <Link href={`/${app}/${ly}/${lm}`} className={style.link}>
         {"<"}
       </Link>
-      <h2>
-        {year} . {month}
-      </h2>
+      <Link href={`/${app}/${year}/${month}`} className={style.link}>
+        <h2>
+          {year} . {month}
+        </h2>
+      </Link>
       <Link href={`/${app}/${ny}/${nm}`} className={style.link}>
         {">"}
       </Link>
