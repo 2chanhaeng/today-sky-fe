@@ -1,13 +1,10 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
 import { Dates } from "@/types/params";
 import { Todo } from "@/types/response";
-import { PostTodo } from "@/types/request";
-import formToObj from "@/utils/formToJson";
 import getPathByDate from "@/utils/getPathByDate";
-import requestData from "@/utils/requestData";
 import Item from "../Item";
+import { getTodos, postTodo } from "./utils";
 import style from "./style.module.scss";
 
 /**
@@ -47,27 +44,4 @@ export default async function DailyTodos(params: Dates) {
       </ul>
     </section>
   );
-}
-
-async function getTodos(path: string): Promise<Todo[]> {
-  "use server";
-  try {
-    const data = await requestData<null, Todo[]>("GET")(path);
-    return data ?? [];
-  } catch (e) {
-    console.error(e);
-    return [];
-  }
-}
-
-async function postTodo(path: string, formData: FormData) {
-  "use server";
-  try {
-    const { content } = formToObj<PostTodo>(formData);
-    const todo = await requestData<PostTodo, Todo>("POST")(path, { content });
-    if (!todo) throw new Error("No data");
-    revalidatePath("/");
-  } catch (e) {
-    console.error(e);
-  }
 }

@@ -1,8 +1,7 @@
-import { revalidatePath } from "next/cache";
 import { Todo } from "@/types/response";
-import requestData from "@/utils/requestData";
 import style from "./style.module.scss";
 import Content from "./Content";
+import { deleteTodo, checkTodo } from "./utils";
 
 interface ItemProps extends Todo {}
 
@@ -43,31 +42,4 @@ ItemProps) {
       </form>
     </li>
   );
-}
-
-async function deleteTodo(id: string, _: FormData) {
-  "use server";
-  try {
-    console.log(id);
-    await requestData<null, null>("DELETE")(`/todo/${id}`);
-    revalidatePath("/");
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-async function checkTodo(
-  { id, checked }: { id: string; checked: boolean },
-  _: FormData
-) {
-  "use server";
-  try {
-    console.log(id, checked, !checked, JSON.stringify({ checked: !checked }));
-    await requestData<{ checked: boolean }, null>("PATCH")(`/todo/${id}`, {
-      checked: !checked,
-    });
-    revalidatePath("/");
-  } catch (e) {
-    console.error(e);
-  }
 }
