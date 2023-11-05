@@ -1,5 +1,3 @@
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { Dates } from "@/types/params";
 import { Todo } from "@/types/response";
 import getPathByDate from "@/utils/getPathByDate";
@@ -23,10 +21,7 @@ import style from "./style.module.scss";
  * ```
  */
 export default async function DailyTodos(params: Dates) {
-  "use server";
-
   const path = getPathByDate("todo")({ params });
-  if (!cookies().has("access")) redirect(`/api/login?redirect=${path}`);
   const { date } = params;
   const todos: Todo[] = await getTodos(path);
   const post = postTodo.bind(null, path);
