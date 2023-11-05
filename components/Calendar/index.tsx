@@ -5,17 +5,16 @@ interface AppYearMonth {
   app: string;
   year: number;
   month: number;
-  setDate?: (date: number) => void;
 }
 
 const isToday = isTheDate();
 
-export default function Calendar({ app, year, month, setDate }: AppYearMonth) {
+export default function Calendar({ app, year, month }: AppYearMonth) {
   return (
     <section id="calendar">
       <Header app={app} year={year} month={month} />
       <Weekdays />
-      <Dates app={app} year={year} month={month} setDate={setDate} />
+      <Dates app={app} year={year} month={month} />
       <Footer />
     </section>
   );
@@ -41,10 +40,12 @@ function Header({ app, year, month }: AppYearMonth) {
   );
 }
 
+const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
 function Weekdays() {
   return (
     <div className={style.weekdays}>
-      {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+      {weekdays.map((day) => (
         <div className={`${style[day.toLowerCase()]} ${style.day}`} key={day}>
           {day}
         </div>
@@ -53,7 +54,7 @@ function Weekdays() {
   );
 }
 
-function Dates({ app, year, month, setDate }: AppYearMonth) {
+function Dates({ app, year, month }: AppYearMonth) {
   const first = new Date(year, month - 1, 1);
   const last = new Date(year, month, 0);
   const firstSun = new Date(
@@ -71,7 +72,7 @@ function Dates({ app, year, month, setDate }: AppYearMonth) {
     { length: (lastSat.getTime() - firstSun.getTime()) / 86400000 + 1 },
     (_, i) => new Date(fsy, fsm - 1, fsd + i)
   );
-  const DateDiv = createDateDiv(app, month, setDate);
+  const DateDiv = createDateDiv(app, month);
   return (
     <section className={style.dates}>
       {dates.map((date, index) => (
@@ -81,19 +82,14 @@ function Dates({ app, year, month, setDate }: AppYearMonth) {
   );
 }
 
-function createDateDiv(
-  app: string,
-  basis: number,
-  setDate?: (date: number) => void
-) {
+function createDateDiv(app: string, basis: number) {
   const isThisMonth = compareMonth(basis);
   return function DateDiv({ date }: { date: Date }) {
     const [year, month, day] = getYMD(date);
     return (
       <div className={`${style.date} ${isToday(date) && style.today}`}>
         <Link
-          href={`/${app}/${year}/${month}#${day}`}
-          onClick={() => setDate && setDate(day)}
+          href={`/${app}/${year}/${month}/${day}`}
           className={`${style.link} ${style[`${isThisMonth(month)}-month`]}`}
         >
           {day === 1 ? `${month}/${day}` : day}
