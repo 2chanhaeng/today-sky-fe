@@ -1,0 +1,23 @@
+.todoform {
+  display: flex;
+  flex-direction: row;
+}
+.unchecked {
+  background-color: $fg-color;
+  &:hover {
+    background-color: $sec-color;
+  }
+}
+.checked {
+  background-color: $pri-color;
+  &:hover {
+    background-color: $wrn-color;
+  }
+}
+.delete:hover {
+  background-color: $err-color;
+}
+.content {
+  flex: 1;
+  margin: 0 0.5rem;
+}
