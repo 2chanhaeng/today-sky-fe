@@ -5,13 +5,18 @@ import style from "./style.module.scss";
 import UnPwInputs from "@/types/UnPwInputs";
 import UnPwForm from "../UnPwForm";
 
-export default function LoginForm() {
+interface LoginFormProps {
+  redirect?: string;
+}
+
+export default function LoginForm({ redirect }: LoginFormProps) {
   const [inputs, setInputs] = useState({
     username: "",
     password: "",
   } as UnPwInputs);
+  const action = redirect ? `/api/login?redirect=${redirect}` : "/api/login";
   return (
-    <form className={style.form} method="POST" action="/api/login">
+    <form className={style.form} method="POST" action={action}>
       <UnPwForm inputs={inputs} setInputs={setInputs} />
       <label className={style.keep}>
         <input type="checkbox" id="keep" name="keep" value="on" />

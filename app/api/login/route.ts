@@ -3,13 +3,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { Tokens, Userinfo } from "@/types/login";
 import reqData from "@/utils/reqData";
 import paramsToObject from "@/utils/paramsToObject";
+import getAccess from "@/utils/getAccess";
 
 export async function POST(req: NextRequest) {
   const unpw = paramsToObject<Userinfo>(await req.text());
-  const { access, refresh } = await requestLogin(unpw);
-  setTokens(access, refresh);
-  const { origin } = req.nextUrl;
-  return NextResponse.redirect(`${origin}/home`, { status: 303 });
+  const tokens = await requestLogin(unpw);
+  setTokens(tokens);
+  const { origin, searchParams } = req.nextUrl;
+  const path = searchParams.get("redirect") || "/home";
+  return NextResponse.redirect(`${origin}${path}`, { status: 303 });
 }
 
 async function requestLogin({
@@ -38,18 +40,31 @@ async function requestLogin({
   }
 }
 
-function setTokens(access: string, refresh: string) {
-  cookies()
-    .set("access", access, {
+function setTokens({ access, refresh }: { access: string; refresh: string }) {
+  if (access)
+    cookies().set("access", access, {
       httpOnly: true,
       path: "/",
       secure: true,
-      maxAge: 60 * 60 * 7,
-    })
-    .set("refresh", refresh, {
+      maxAge: 60 * 60,
+    });
+  if (refresh)
+    cookies().set("refresh", refresh, {
       httpOnly: true,
       path: "/",
       secure: true,
       maxAge: 60 * 60 * 24 * 30,
     });
+}
+
+export async function GET(req: NextRequest) {
+  const { origin, searchParams } = req.nextUrl;
+  const redirectTo = searchParams.get("redirect") || "/home";
+  const reloginTo = `/login?redirect=${redirectTo}`;
+  const access = await getAccess();
+  const redirect = access ? redirectTo : reloginTo;
+  return NextResponse.redirect(
+    `${origin}${redirect}`,
+    { status: 303 } //
+  );
 }
