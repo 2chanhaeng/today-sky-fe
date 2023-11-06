@@ -1,6 +1,17 @@
+.todo {
+  &::marker {
+    content: "";
+  }
+}
 .todoform {
   display: flex;
   flex-direction: row;
+  align-items: center;
+}
+.check {
+  height: 1rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
 }
 .unchecked {
   background-color: $fg-color;
@@ -17,7 +28,11 @@
 .delete:hover {
   background-color: $err-color;
 }
-.content {
+.contentWrapper {
   flex: 1;
+  display: flex;
+  align-items: center;
+}
+.content {
   margin: 0 0.5rem;
 }

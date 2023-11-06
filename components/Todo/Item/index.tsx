@@ -30,9 +30,7 @@ ItemProps) {
   return (
     <li id={id} className={style.todo}>
       <form className={style.todoform}>
-        <button formAction={check} className={checkButtonClassNames}>
-          {checked ? "⭕️" : "❌"}
-        </button>
+        <button formAction={check} className={checkButtonClassNames}></button>
         <Content content={content} />
         {/* TODO: comment */}
         <button formAction={destroy} className={style.delete}>

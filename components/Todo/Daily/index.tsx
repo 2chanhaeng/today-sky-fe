@@ -26,7 +26,7 @@ export default async function DailyTodos(params: Dates) {
   const todos: Todo[] = await getTodos(path);
   const post = postTodo.bind(null, path);
   return (
-    <section id="todos">
+    <section className={style.main}>
       <h2 className={style.date}>{date}일</h2>
       <form className={style.newTodo} action={post}>
         <input type="text" placeholder="할 일" name="content" required />
