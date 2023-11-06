@@ -9,3 +9,19 @@ export interface Diary {
 export interface Diaries {
   [key: number]: Diary;
 }
+
+export interface PostTodo {
+  id: string;
+}
+
+export interface Todo {
+  id: string;
+  content: string;
+  checked: boolean;
+  comment: Comment[];
+}
+
+export interface Comment {
+  id: string;
+  content: string;
+}

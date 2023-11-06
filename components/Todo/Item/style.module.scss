@@ -1,0 +1,38 @@
+.todo {
+  &::marker {
+    content: "";
+  }
+}
+.todoform {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.check {
+  height: 1rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+}
+.unchecked {
+  background-color: $fg-color;
+  &:hover {
+    background-color: $sec-color;
+  }
+}
+.checked {
+  background-color: $pri-color;
+  &:hover {
+    background-color: $wrn-color;
+  }
+}
+.delete:hover {
+  background-color: $err-color;
+}
+.contentWrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.content {
+  margin: 0 0.5rem;
+}
