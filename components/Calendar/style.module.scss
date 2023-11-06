@@ -1,3 +1,18 @@
+.calendar {
+  // background-color: $fg-color;
+  box-sizing: border-box;
+  border-radius: 1em;
+}
+.calendarSummary {
+  margin: 0 0.5em 0.5em 0.5em;
+  &::marker {
+    content: "📅 Open Calendar";
+  }
+}
+.calendar[open] .calendarSummary::marker {
+  content: "📅 Fold Calendar";
+}
+
 .header {
   display: flex;
   justify-content: space-evenly;

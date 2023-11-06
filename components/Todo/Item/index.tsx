@@ -27,7 +27,6 @@ ItemProps) {
     checked ? style.checked : style.unchecked,
   ];
   const checkButtonClassNames = checkButtonClasses.join(" ");
-  console.log(JSON.stringify(style));
   return (
     <li id={id} className={style.todo}>
       <form className={style.todoform}>

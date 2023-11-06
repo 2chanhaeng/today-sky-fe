@@ -11,12 +11,13 @@ const isToday = isTheDate();
 
 export default function Calendar({ app, year, month }: AppYearMonth) {
   return (
-    <section id="calendar">
+    <details className={style.calendar} open>
+      <summary className={style.calendarSummary}></summary>
       <Header app={app} year={year} month={month} />
       <Weekdays />
       <Dates app={app} year={year} month={month} />
       <Footer />
-    </section>
+    </details>
   );
 }
 
