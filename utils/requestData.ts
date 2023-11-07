@@ -30,7 +30,11 @@ export default function requestData<Req, Res>(
       const res = await fetch(url, init);
       console.log(`response ${res.status} from ${path}`);
       if (!res.ok) tryGetErrorMessage(res);
-      return (await res.json()) as Res;
+      try {
+        return (await res.json()) as Res;
+      } catch (e) {
+        return true;
+      }
     } catch (e) {
       console.log(e);
       return undefined;
