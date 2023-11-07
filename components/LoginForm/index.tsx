@@ -1,25 +1,20 @@
-"use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import UnPwInputs from "@/types/UnPwInputs";
 import UnPwForm from "../UnPwForm";
 import { login } from "./actions";
 import style from "./style.module.scss";
+import UserInfo from "./UserInfo";
 
 interface LoginFormProps {
   redirect?: string;
 }
 
 export default function LoginForm({ redirect }: LoginFormProps) {
-  const [inputs, setInputs] = useState({
-    username: "",
-    password: "",
-  } as UnPwInputs);
   const action = login.bind(null, { redirect });
   return (
     <form className={style.form} method="POST" action={action}>
-      <UnPwForm inputs={inputs} setInputs={setInputs} />
+      <UserInfo />
       <label className={style.keep}>
         <input type="checkbox" id="keep" name="keep" value="keep" checked />
         로그인 상태 유지
