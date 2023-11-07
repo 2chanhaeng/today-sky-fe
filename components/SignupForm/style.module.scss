@@ -47,3 +47,15 @@
     border-bottom: 1px solid #777; // separate line id and pw
   }
 }
+
+.wrong {
+  color: $err-color;
+  font-size: large;
+  border-radius: 0.5rem;
+  & button {
+    margin-left: 0.5rem;
+    border-radius: 0.5rem;
+    border: 0.2rem solid $err-color;
+    padding: 0.3rem;
+  }
+}

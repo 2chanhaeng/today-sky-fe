@@ -1,4 +1,5 @@
 import UsernameInput from "./UsernameInput";
+import ErroDialog from "./ErrorDialog";
 import style from "./style.module.scss";
 
 export default function UserInfo() {
@@ -18,9 +19,7 @@ export default function UserInfo() {
           required
         />
       </label>
-      <dialog id="wrong-input" className={style.wrong}>
-        아이디 혹은 비밀번호가 잘못되었습니다.
-      </dialog>
+      <ErroDialog />
     </section>
   );
 }
