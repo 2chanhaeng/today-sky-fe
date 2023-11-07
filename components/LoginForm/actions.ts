@@ -1,22 +1,28 @@
 "use server";
 
-import { redirect } from "next/navigation";
+import { redirect as redirectTo } from "next/navigation";
 import { cookies } from "next/headers";
 import { Tokens, LoginInputs, LoginOptions } from "@/types/login";
 import formToObj from "@/utils/formToJson";
 import requestData from "@/utils/requestData";
 
-export async function login(
-  { redirect: redirectTo }: LoginOptions,
-  formData: FormData
-) {
-  const userinfo = formToObj<LoginInputs>(formData);
-  if (userinfo.keep) userinfo.keep = true;
-  console.log(`userinfo: ${JSON.stringify(userinfo)}`);
-  const tokens = await requestLogin(userinfo);
-  setTokens(tokens, userinfo);
-  const path = redirectTo || "/home";
-  return redirect(path);
+export async function login({ redirect }: LoginOptions, formData: FormData) {
+  let path = `/login?error=fail`;
+  if (redirect) path += `&redirect=${redirect}`;
+  console.log("login", path);
+  try {
+    const userinfo = formToObj<LoginInputs>(formData);
+    if (userinfo.keep) userinfo.keep = true;
+    const tokens = await requestLogin(userinfo);
+    if (!tokens || !tokens.access || !tokens.refresh)
+      throw new Error("로그인 실패");
+    setTokens(tokens, userinfo);
+    path = redirect || "/home";
+  } catch (e) {
+    console.log(e);
+  }
+  console.log(path);
+  return redirectTo(path);
 }
 
 async function requestLogin(userinfo: LoginInputs): Promise<Tokens> {
