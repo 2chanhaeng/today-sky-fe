@@ -1,5 +1,5 @@
 import UsernameInput from "./UsernameInput";
-import ErroDialog from "./ErrorDialog";
+import ErrorDialog from "@/components/Userinfo/ErrorDialog";
 import style from "./style.module.scss";
 
 export default function UserInfo() {
@@ -19,7 +19,7 @@ export default function UserInfo() {
           required
         />
       </label>
-      <ErroDialog />
+      <ErrorDialog />
     </section>
   );
 }
