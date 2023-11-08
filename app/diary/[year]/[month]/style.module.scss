@@ -1,7 +1,6 @@
-@import "@/styles/monthly.scss";
-
 .main {
   width: 100%;
+  height: 100%;
 
   #diary {
     box-sizing: border-box;
@@ -13,21 +12,3 @@
     margin: 0.5em;
   }
 }
-
-// .diary.date-emo-img {
-//   flex-direction: column;
-//   width: 30%;
-// }
-
-// .diary.date-emo {
-//   width: 100%;
-//   justify-content: space-between;
-// }
-
-// .diary.date {
-//   font-weight: 600;
-// }
-
-// .diary.emo {
-//   width: 50%;
-// }
