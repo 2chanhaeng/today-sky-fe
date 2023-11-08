@@ -1,11 +1,10 @@
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import { checkLogout } from "@/utils/checkLoggedStatus";
 import HomeHeader from "@/components/HomeHeader";
 import SignupForm from "@/components/SignupForm";
 import style from "./style.module.scss";
 
 export default function SignupPage() {
-  if (cookies().has("access")) redirect("/home");
+  checkLogout();
   return (
     <main>
       <HomeHeader />

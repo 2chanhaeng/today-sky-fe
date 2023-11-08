@@ -1,5 +1,4 @@
-import { cookies } from "next/headers";
-import { redirect as redirectTo } from "next/navigation";
+import { checkLogout } from "@/utils/checkLoggedStatus";
 import HomeHeader from "@/components/HomeHeader";
 import LoginForm from "@/components/LoginForm";
 import style from "./style.module.scss";
@@ -13,7 +12,7 @@ interface LoginPageProps {
 export default function LoginPage({
   searchParams: { redirect },
 }: LoginPageProps) {
-  if (cookies().has("access")) redirectTo("/home");
+  checkLogout();
   return (
     <main>
       <HomeHeader />

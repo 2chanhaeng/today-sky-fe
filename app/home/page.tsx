@@ -1,11 +1,10 @@
 import Link from "next/link";
+import { checkLogin } from "@/utils/checkLoggedStatus";
 import HomeHeader from "@/components/HomeHeader";
 import style from "./style.module.scss";
-import getAccess from "@/utils/getAccess";
-import { redirect } from "next/navigation";
 
 export default async function HomePage() {
-  if (!(await getAccess())) redirect("/login");
+  checkLogin();
   const today = new Date();
   const year = today.getFullYear();
   const month = today.getMonth() + 1;
