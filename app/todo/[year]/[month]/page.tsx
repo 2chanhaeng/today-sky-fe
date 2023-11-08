@@ -1,6 +1,4 @@
-import { DateParams } from "@/types/params";
-
-export default function MonthlyTodo({ params }: DateParams) {
+export default function MonthlyTodo() {
   // TODO: static of the month
   return <></>;
 }
