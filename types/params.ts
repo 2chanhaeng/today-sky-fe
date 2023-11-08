@@ -7,3 +7,12 @@ export interface Dates {
   month: number;
   date?: number;
 }
+
+export enum App {
+  "todo" = "todo",
+  "diary" = "diary",
+}
+
+export interface AppDates extends Dates {
+  app?: App;
+}
