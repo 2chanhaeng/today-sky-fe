@@ -2,7 +2,7 @@ import { Dates } from "@/types/params";
 import { Todo } from "@/types/response";
 import getPathByDate from "@/utils/getPathByDate";
 import Item from "../Item";
-import { getTodos, postTodo } from "./utils";
+import { getTodos, postTodo } from "./actions";
 import style from "./style.module.scss";
 
 /**

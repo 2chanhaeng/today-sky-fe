@@ -9,15 +9,41 @@
     width: 100%;
     margin-bottom: 6.5rem;
   }
-  .keep {
-    // to center content
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem; // space
-  }
-  .toLogin,
   .toSignup {
     @extend .button;
     margin-bottom: 0.5rem;
+  }
+}
+
+.userinfo {
+  // to center content
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  $paddingTop: 0.8rem;
+  padding-top: $paddingTop;
+
+  box-sizing: border-box;
+  background-color: $fg-color;
+  color: $bg-color;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  :is(.username, .password) {
+    display: flex;
+    align-items: center;
+    input {
+      // remove default style
+      border: none;
+      outline: none;
+      margin-left: 1rem; // space for label text
+      width: auto;
+      min-width: 15rem;
+      font-size: 1.5rem;
+    }
+  }
+  .username {
+    padding-bottom: 1 - $paddingTop;
+    border-bottom: 1px solid #777; // separate line id and pw
   }
 }

@@ -1,7 +1,7 @@
 import { Todo } from "@/types/response";
 import style from "./style.module.scss";
 import Content from "./Content";
-import { deleteTodo, checkTodo } from "./utils";
+import { deleteTodo, checkTodo } from "./actions";
 
 interface ItemProps extends Todo {}
 
