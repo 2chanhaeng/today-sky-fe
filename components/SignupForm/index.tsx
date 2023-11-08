@@ -4,7 +4,7 @@ import style from "./style.module.scss";
 
 export default function SignupForm() {
   return (
-    <form className={style.form} method="POST" action={signup}>
+    <form className={style.form} action={signup}>
       <UserInfo />
       <button className={style.toSignup} type="submit">
         회원가입

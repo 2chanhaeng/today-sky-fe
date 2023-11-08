@@ -10,10 +10,16 @@ interface LoginFormProps {
 export default function LoginForm({ redirect }: LoginFormProps) {
   const action = login.bind(null, { redirect });
   return (
-    <form className={style.form} method="POST" action={action}>
+    <form className={style.form} action={action}>
       <UserInfo />
       <label className={style.keep}>
-        <input type="checkbox" id="keep" name="keep" value="keep" checked />
+        <input
+          type="checkbox"
+          id="keep"
+          name="keep"
+          value="keep"
+          defaultChecked
+        />
         로그인 상태 유지
       </label>
       <button className={style.toLogin}>로그인</button>
