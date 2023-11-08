@@ -9,7 +9,6 @@ import requestData from "@/utils/requestData";
 export async function login({ redirect }: LoginOptions, formData: FormData) {
   let path = `/login?error=fail`;
   if (redirect) path += `&redirect=${redirect}`;
-  console.log("login", path);
   try {
     const userinfo = formToObj<LoginInputs>(formData);
     if (userinfo.keep) userinfo.keep = true;

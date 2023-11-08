@@ -1,7 +1,4 @@
-import { useState } from "react";
 import Link from "next/link";
-import UnPwInputs from "@/types/UnPwInputs";
-import UnPwForm from "../UnPwForm";
 import { login } from "./actions";
 import style from "./style.module.scss";
 import UserInfo from "./UserInfo";
