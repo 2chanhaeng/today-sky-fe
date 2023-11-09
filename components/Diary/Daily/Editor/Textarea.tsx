@@ -2,20 +2,16 @@
 
 import { ChangeEvent } from "react";
 
-export default async function Textarea({
-  rows,
-  name,
-  defaultValue,
-}: {
+interface Props {
   rows: number;
   name: string;
   defaultValue?: string;
-}) {
+}
+
+export default function Textarea(props: Props) {
   return (
     <textarea
-      name={name}
-      rows={rows}
-      defaultValue={defaultValue}
+      {...props}
       onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
         // textarea auto resize
         e.target.style.height = "auto";
