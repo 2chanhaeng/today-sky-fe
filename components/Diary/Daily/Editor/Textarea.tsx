@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useEffect, useRef } from "react";
 
 interface ElemProps {
   name: string;
@@ -13,6 +13,11 @@ interface Props extends ElemProps, ActionProps {}
 
 export default function Textarea({ post, ...elemProps }: Props) {
   const [value, setValue] = useState(elemProps.defaultValue || "");
+  const postRef = useRef(post);
+  useEffect(() => {
+    const timeOutId = setTimeout(() => postRef.current(value), 500);
+    return () => clearTimeout(timeOutId);
+  }, [value]);
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     // textarea auto resize
     e.target.style.height = "auto";
