@@ -1,15 +1,10 @@
 import Link from "next/link";
 import style from "./style.module.scss";
-
-interface AppYearMonth {
-  app: string;
-  year: number;
-  month: number;
-}
+import { App, AppDates } from "@/types/params";
 
 const isToday = isTheDate();
 
-export default function Calendar({ app, year, month }: AppYearMonth) {
+export default function Calendar({ app, year, month }: AppDates) {
   return (
     <details className={style.calendar} open>
       <summary className={style.calendarSummary}></summary>
@@ -21,7 +16,7 @@ export default function Calendar({ app, year, month }: AppYearMonth) {
   );
 }
 
-function Header({ app, year, month }: AppYearMonth) {
+function Header({ app, year, month }: AppDates) {
   const lastMonth = new Date(year, month - 1, 0);
   const [ly, lm] = getYMD(lastMonth);
   const nextMonth = new Date(year, month, 1);
@@ -57,7 +52,7 @@ function Weekdays() {
   );
 }
 
-function Dates({ app, year, month }: AppYearMonth) {
+function Dates({ app, year, month }: AppDates) {
   const first = new Date(year, month - 1, 1);
   const last = new Date(year, month, 0);
   const firstSun = new Date(
@@ -75,7 +70,7 @@ function Dates({ app, year, month }: AppYearMonth) {
     { length: (lastSat.getTime() - firstSun.getTime()) / 86400000 + 1 },
     (_, i) => new Date(fsy, fsm - 1, fsd + i)
   );
-  const DateDiv = createDateDiv(app, month);
+  const DateDiv = createDateDiv(app!, month);
   return (
     <section className={style.dates}>
       {dates.map((date, index) => (
@@ -85,7 +80,7 @@ function Dates({ app, year, month }: AppYearMonth) {
   );
 }
 
-function createDateDiv(app: string, basis: number) {
+function createDateDiv(app: App, basis: number) {
   const isThisMonth = compareMonth(basis);
   return function DateDiv({ date }: { date: Date }) {
     const [year, month, day] = getYMD(date);

@@ -4,8 +4,8 @@ import { cookies } from "next/headers";
 
 export default function requestData<Req, Res>(
   method: string
-): (path: string, data?: Req) => Promise<Maybe<Res>> {
-  return async (path: string, data?: Req) => {
+): (path: string, data?: Req, tags?: string[]) => Promise<Maybe<Res>> {
+  return async (path: string, data?: Req, tags?: string[]) => {
     "use server";
     try {
       const body = data ? JSON.stringify(data) : "";
@@ -16,11 +16,17 @@ export default function requestData<Req, Res>(
       if (access) {
         headers["Authorization"] = `Bearer ${access}`;
       }
-      const init: RequestInit = {
-        method,
-        headers,
-        cache: "no-cache",
-      };
+      const init: RequestInit = tags
+        ? {
+            method,
+            headers,
+            next: { tags },
+          }
+        : {
+            method,
+            headers,
+            cache: "no-cache",
+          };
       if (body) {
         init.body = body;
         console.log("body: " + body);
@@ -33,7 +39,7 @@ export default function requestData<Req, Res>(
       try {
         return (await res.json()) as Res;
       } catch (e) {
-        return true;
+        return true as any;
       }
     } catch (e) {
       console.log(e);

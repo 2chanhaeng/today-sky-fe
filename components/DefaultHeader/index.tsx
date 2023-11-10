@@ -1,17 +1,8 @@
 import Link from "next/link";
 import style from "./style.module.scss";
+import { App, AppDates } from "@/types/params";
 
-export default function DefaultHeader({
-  app,
-  year,
-  month,
-  date,
-}: {
-  app: string;
-  year: number;
-  month: number;
-  date?: number;
-}) {
+export default function DefaultHeader({ app, year, month, date }: AppDates) {
   const datePath = `${year}/${month}` + (date ? `/${date}` : "");
   return (
     <header className={style.header}>
@@ -20,13 +11,13 @@ export default function DefaultHeader({
       </Link>
       <Link
         href={`/diary/${datePath}`}
-        className={`${style.link} ${app === "diary" ? style.now : ""}`}
+        className={`${style.link} ${app === App.diary ? style.now : ""}`}
       >
         Diary
       </Link>
       <Link
         href={`/todo/${datePath}`}
-        className={`${style.link} ${app === "todo" ? style.now : ""}`}
+        className={`${style.link} ${app === App.todo ? style.now : ""}`}
       >
         Todo
       </Link>
