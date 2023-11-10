@@ -12,15 +12,16 @@ interface ActionProps {
 interface Props extends ElemProps, ActionProps {}
 
 export default function Textarea({ post, ...elemProps }: Props) {
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    // textarea auto resize
+    e.target.style.height = "auto";
+    e.target.style.height = e.target.scrollHeight + "px";
 
+  };
   return (
     <textarea
-      onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-        // textarea auto resize
-        e.target.style.height = "auto";
-        e.target.style.height = e.target.scrollHeight + "px";
-      }}
       {...elemProps}
+      onChange={handleChange}
     ></textarea>
   );
 }
