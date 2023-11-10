@@ -16,3 +16,6 @@
   background-color: $fg-color;
   height: auto;
 }
+.spinner {
+  @include spin;
+}
