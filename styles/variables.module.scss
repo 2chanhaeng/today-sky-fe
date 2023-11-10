@@ -9,3 +9,16 @@ $err-color: rgb(255, 0, 89);
   $bg-color: rgb(54, 85, 128);
   $fg-color: rgb(0, 0, 0);
 }
+
+@mixin spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
