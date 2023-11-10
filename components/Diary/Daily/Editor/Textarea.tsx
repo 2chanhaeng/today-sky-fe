@@ -2,21 +2,25 @@
 
 import { ChangeEvent } from "react";
 
-interface Props {
-  rows: number;
+interface ElemProps {
   name: string;
   defaultValue?: string;
 }
+interface ActionProps {
+  post: (value: string) => void;
+}
+interface Props extends ElemProps, ActionProps {}
 
-export default function Textarea(props: Props) {
+export default function Textarea({ post, ...elemProps }: Props) {
+
   return (
     <textarea
-      {...props}
       onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
         // textarea auto resize
         e.target.style.height = "auto";
         e.target.style.height = e.target.scrollHeight + "px";
       }}
+      {...elemProps}
     ></textarea>
   );
 }
