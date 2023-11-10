@@ -1,6 +1,7 @@
 "use client";
 
 import { ChangeEvent, useState, useEffect, useRef } from "react";
+import style from "../style.module.scss";
 
 interface ElemProps {
   name: string;
@@ -30,6 +31,7 @@ export default function Textarea({ post, ...elemProps }: Props) {
       {...elemProps}
       value={value}
       onChange={handleChange}
+      className={style.textarea}
       rows={Math.max(value.split("\n").length, 5)}
     ></textarea>
   );

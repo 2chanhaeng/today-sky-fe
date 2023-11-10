@@ -12,10 +12,7 @@ export default async function DailyDiary(params: Dates) {
   const diary = await getDiary(path);
   return (
     <section className={style.diary}>
-      <TurnEditor />
-      <article className={style.content}>{diary.content}</article>
       <Editor prev={diary.content} path={path} />
-      <label htmlFor="edit" className={style.edit}></label>
     </section>
   );
 }

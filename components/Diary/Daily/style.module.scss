@@ -1,70 +1,18 @@
 .editor {
-  display: none;
   flex-direction: column;
-  & > * {
-    margin-bottom: 0.5rem;
-  }
-  & > textarea {
-    all: unset;
-    white-space: pre-line;
-    display: block;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    margin-bottom: 0.5rem;
-    color: $bg-color;
-    background-color: $fg-color;
-  }
-  & > button {
-    all: unset;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    text-align: center;
-    font-size: 1rem;
-    color: $bg-color;
-    background-color: $fg-color;
-    cursor: pointer;
-    &:hover {
-      background-color: $pri-color;
-      color: $fg-color;
-    }
-  }
+  box-sizing: border-box;
+  border-radius: 1em;
 }
-label.edit {
+.textarea {
+  all: unset;
+  white-space: pre-line;
   display: block;
   padding: 0.5rem;
-  border-radius: 0.5rem;
-  background-color: $fg-color;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
   color: $bg-color;
-  cursor: pointer;
-  text-align: center;
-  &::before {
-    content: "Edit";
-  }
-  &:hover {
-    background-color: $pri-color;
-    color: $fg-color;
-  }
-}
-input.edit {
-  display: none;
-}
-input.edit:checked {
-  & ~ .editor {
-    display: flex;
-  }
-  & ~ .content {
-    display: none;
-  }
-  & ~ label.edit {
-    &::before {
-      content: "Cancel";
-    }
-    &:hover {
-      background-color: red;
-      color: $fg-color;
-    }
-  }
-}
-.content {
-  white-space: pre-line;
+  background-color: $fg-color;
+  height: auto;
 }
