@@ -14,9 +14,8 @@ export default function Editor({ prev, path }: { prev: string; path: string }) {
       postDiary(path, formData);
     });
   return (
-    <form className={style.editor} action={post}>
-      <Textarea name="content" defaultValue={prev} rows={4} />
-      <button>Save</button>
+    <form className={style.editor}>
+      <Textarea name="content" defaultValue={prev} post={post} />
     </form>
   );
 }
