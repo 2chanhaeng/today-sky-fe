@@ -1,7 +1,6 @@
 import { Dates } from "@/types/params";
 import getPathByDate from "@/utils/getPathByDate";
 import Editor from "./Editor";
-import TurnEditor from "./TurnEditor";
 import { getDiary } from "./actions";
 import style from "./style.module.scss";
 
