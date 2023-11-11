@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Header } from "./Header";
+import { Weekdays } from "./Weekdays";
 import style from "./style.module.scss";
 import { App, AppDates } from "@/types/params";
 
@@ -12,20 +13,6 @@ export default function Calendar({ app, year, month }: AppDates) {
       <Dates app={app} year={year} month={month} />
       <Footer />
     </details>
-  );
-}
-
-const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-function Weekdays() {
-  return (
-    <div className={style.weekdays}>
-      {weekdays.map((day) => (
-        <div className={`${style[day.toLowerCase()]} ${style.day}`} key={day}>
-          {day}
-        </div>
-      ))}
-    </div>
   );
 }
 
