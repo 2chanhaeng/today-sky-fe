@@ -2,8 +2,6 @@ import Link from "next/link";
 import style from "./style.module.scss";
 import { App, AppDates } from "@/types/params";
 
-const isToday = isTheDate();
-
 export default function Calendar({ app, year, month }: AppDates) {
   return (
     <details className={style.calendar} open>
@@ -106,15 +104,4 @@ function compareMonth(basis: number) {
     const diff = (month - basis) % 12;
     return diff === 0 ? "this" : diff === 1 ? "next" : "prev";
   };
-}
-
-function getYMD(date: Date) {
-  return [date.getFullYear(), date.getMonth() + 1, date.getDate()];
-}
-
-function isTheDate(today = new Date()) {
-  return (date: Date) =>
-    date.getFullYear() === today.getFullYear() &&
-    date.getMonth() === today.getMonth() &&
-    date.getDate() === today.getDate();
 }
