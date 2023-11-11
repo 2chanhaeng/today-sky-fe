@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Header } from "./Header";
 import style from "./style.module.scss";
 import { App, AppDates } from "@/types/params";
 
@@ -11,28 +12,6 @@ export default function Calendar({ app, year, month }: AppDates) {
       <Dates app={app} year={year} month={month} />
       <Footer />
     </details>
-  );
-}
-
-function Header({ app, year, month }: AppDates) {
-  const lastMonth = new Date(year, month - 1, 0);
-  const [ly, lm] = getYMD(lastMonth);
-  const nextMonth = new Date(year, month, 1);
-  const [ny, nm] = getYMD(nextMonth);
-  return (
-    <header className={style.header}>
-      <Link href={`/${app}/${ly}/${lm}`} className={style.link}>
-        {"<"}
-      </Link>
-      <Link href={`/${app}/${year}/${month}`} className={style.link}>
-        <h2>
-          {year} . {month}
-        </h2>
-      </Link>
-      <Link href={`/${app}/${ny}/${nm}`} className={style.link}>
-        {">"}
-      </Link>
-    </header>
   );
 }
 
