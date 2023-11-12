@@ -1,4 +1,4 @@
-import config from "@/config/index.mjs";
+import "dotenv/config";
 import { Maybe } from "@/types/generic";
 import { cookies } from "next/headers";
 
@@ -10,7 +10,7 @@ export default function requestData<Req, Res>(
     try {
       const body = data ? JSON.stringify(data) : "";
       console.log(`request ${method} to ${path} with ${body}`);
-      const url = new URL(path, config.api);
+      const url = new URL(path, process.env.API);
       const headers: any = {};
       const access = cookies().get("access")?.value;
       if (access) {

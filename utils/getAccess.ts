@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import config from "@/config/index.mjs";
+import "dotenv/config";
 
 /**
  * Get access token from cookie.
@@ -33,7 +33,7 @@ export default async function getAccess(): Promise<string> {
 }
 
 async function requestAccess(refresh: string) {
-  const url = new URL("/refresh", config.api);
+  const url = new URL("/refresh", process.env.API);
   const res = await fetch(url, {
     method: "POST",
     headers: {

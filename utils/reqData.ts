@@ -1,4 +1,4 @@
-import config from "@/config/index.mjs";
+import "dotenv/config";
 import { ReqRes } from "@/types/generic";
 
 export default function reqData<Req, Res>(
@@ -8,7 +8,7 @@ export default function reqData<Req, Res>(
     try {
       const body = JSON.stringify(data);
       console.log(`request ${method} to ${path} with ${body}`);
-      const url = new URL(path, config.api);
+      const url = new URL(path, process.env.API);
       const headers: any = {};
       if (access) {
         headers["Authorization"] = `Bearer ${access}`;
