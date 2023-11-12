@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 function checkLoggedStatus(passIfLogged: boolean) {
   return (path = "/home") => {
     if (passIfLogged !== cookies().has("access"))
-      redirect(`/api/login?redirect=${path}`);
+      redirect(`/auth?redirect=${path}`);
   };
 }
 

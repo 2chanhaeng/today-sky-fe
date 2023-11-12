@@ -21,7 +21,7 @@ export default function DefaultHeader({ app, year, month, date }: AppDates) {
       >
         Todo
       </Link>
-      <Link href="/api/logout" className={style.toLogout}>
+      <Link href="/logout" className={style.toLogout}>
         Logout
       </Link>
     </header>
