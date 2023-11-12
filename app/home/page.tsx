@@ -39,7 +39,7 @@ export default async function HomePage() {
         </Link>
       </section>
       <footer className={style.footer}>
-        <Link className={style.toLogout} href="/api/logout">
+        <Link className={style.toLogout} href="/logout">
           로그아웃
         </Link>
       </footer>
